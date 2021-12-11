@@ -1,21 +1,21 @@
 import {useState, useEffect} from 'react';
 import BlogList from './BlogList';
+import loading from './loading-buffering.gif'
+import useFetch from './useFetch.js'
 const Home = () => {
-    const [blogs, setBlogs] = useState(null);
-    const [isPending, setIsPending] = useState(true);
-
-      useEffect(() => {
-          fetch('http://localhost:8000/blogs').then(res => {
-              return res.json()
-          }).then(data => {
-              setBlogs(data)
-              setIsPending(false)
-          })
-      },[]);
+    const {data: blogs,isPending, error} = useFetch('http://localhost:8000/blogs');
+     
     return ( 
         <div className="Home">
-            {isPending && <div>Loading...</div>}
+            {error && <div>{error}</div>}
+            {isPending && <img src={loading}/>}
             {blogs && <BlogList blogs={blogs} title="All blogs!"  />}
+            <p> НИЕ СМЕ МЛАДА НО ПРОСПЕРИРАЩА ФИРМА, МАЛКА НО ОТГОВОРНА, КОЯТО ПРАВИ ВСИЧКО ВЪЗМОЖНО ЗА ДА ЗАДОВОЛИ НУЖДИДЕ НА СВОЙТЕ КЛИЕНТИТ И ТЯХНИТЕ ЖЕЛАНИЯ. 
+ГЛАВНАТА НИ ДЕЙНОСТ СЕ РАЗВИВА В ТРАНСПОРТ И СПЕДИЦИЯ. РАЗПОЛАГАМЕ С КОМПЕТЕНТИ И ОБУЧЕНИ КАДРИ КОЙТО ИМАТ УМЕНИЯ ДА ПЛАНУВАТ И ОСЪЩЕСТВЯВАТ ЗАЯВКИ  НА ТЕРИТОРИЯТА НА ЦЯЛИЯТ ЕВРОПЕЙСКИ КОНТИТЕНТ. 
+НАШИЯТ ЕКИП Е ОБУЧЕН ДА РАБОТИ В ДИНАМИЧНА И НАПРЕГНАТА СРЕДА В КОЯТО Е ПРЕДРАЗПОЛОЖЕН ТРАНСПОРТА И СПЕДИЦИЯТА. 
+ГЛАВНАТАНИТЕ НИ ЦЕЛИ СА ДА ПОМАГА НА НАШИТЕ КЛИЕНТИ ДА НАМИРАТ СВОБОДНИ КАПАЦИТЕТИ ЗА СВОЙТЕ ТОВАРИ, НАЙ-НАДЕЖДЕН И ЕФИКАСЕН ТРАНСПОРТ И НАЙ-ЧЕСТНИ И ОТГОВОРНИ ПРЕВОЗВАЧИ. 
+ЗА НАШИТЕ ДОСТАВЧИСИ НА ТРАНСПОРТ Е ВАЖНО ДА НАМИРАМЕ УДОБНИ И ЗАДОВОЛЯВАЩИ СТОКИ ЗА ПРЕВОЗ И ЗАПЪЛВАНЕ НА ТЯХНИТЕ ПРАЗНИ КАПАЦИТЕТИ. 
+СТРЕМИМ СЕ ДА СМЕ ТОЧНИ С НАШИТЕ ПАРТНЬОРИ С КОЙТО РАБОТИМ РАМО ДО РАМО ДЕН ИЗ ДЕН И ДА СИ ПОМОГАМЕ В ОБЩИ И СЛУЖЕБНИ ПРОБЛЕМИ. </p>
         </div>
      );
 }
