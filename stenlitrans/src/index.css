@@ -7,9 +7,12 @@
   font-family: "Quicksand";
   color: #333;
 }
-.cyrillic {
+.test {
+  top:65px;
+}
+.links {
   margin: 0;
-  font-fmaily: "Orelega One";
+  font-family: "Orelega One";
   color: #333;
 }
 .navbar {
@@ -18,9 +21,12 @@
   align-items: center;
   max-width: max;
   margin: 0 auto;
+  width: 100%;
   border-bottom: 1px solid #f2f2f2;
-  backdrop-filter: blur(20px);
-  background: transparent;
+  backdrop-filter: blur(8px);
+  background-blend-mode: lighten;
+  position: fixed;
+  z-index: 1;
 }
 .navbar h1 {
   color: #34dbeb;

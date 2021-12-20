@@ -4,15 +4,18 @@ import  './index.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import AboutUs from './AboutUs';
 import BlogDetails from './BlogDetails';
+import { Parallax } from 'react-parallax';
+import truck from './truck.jpeg'
+
 function App() {
 
   return (
     <Router>
     <div className="App">
     <div className="content">
-     <Navbar />
      <Switch>
-        <Route exact path="/"> 
+        <Route exact path="/">
+        <Navbar />
           <Home />
         </Route>
         <Route path="/aboutus"> 

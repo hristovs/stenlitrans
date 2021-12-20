@@ -1,7 +1,11 @@
- const AboutUs = () => {
+import { useState } from "react";
+const AboutUs = () => {
+const [contact, setContact] = useState("Стилиян");
      return ( 
          <div className="AboutUs">
-             <h2> За Нас:  </h2>
+            <article>
+
+             </article>
          </div>
       );
  }
